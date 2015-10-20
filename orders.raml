@@ -1,0 +1,66 @@
+#%RAML 0.8
+title: Tamaki
+version: v1
+documentation: 
+  - title: API Design workshop hands-on example at https://apidays.nz/ on 20th October 2015 with Saul Caganoff from http://www.sixtree.com.au/ who are Mule partners from Australia.
+    content: application/json
+
+#baseUri: http://tamaki.co.nz/api/{version}
+baseUri: http://mocksvc.mulesoft.com/mocks/6451582d-f8f2-491b-91c5-c7f20eeee916/api/{version}
+
+/orders:
+  displayName: Orders
+  description: This is a collection of orders.
+  post:
+    description: Create a new order.
+    body:
+      application/json:
+        example: |
+          {
+           "subtotal": 123.56,
+           "gst": 12.45,
+           "total": 136.01
+          }
+  /{orderId}:
+    displayName: OrderID
+    description: This is a single order.
+    get:
+      description: Get an order by its ID
+      responses:
+        200:
+          description: Returns a valid order.
+          body:
+            application/json:
+              example: |
+                {"id": "12345",
+                 "subtotal": 123.56,
+                 "gst": 12.45,
+                 "total": 136.01
+                } 
+        404:
+          description: This is not a valid order. 
+            
+            
+    /items:
+      displayName: Linte Items
+      post:
+        description: Add a new item.
+        body:
+          application/json:
+            example: |
+              {
+                "sku":"12345",
+                "qty":3,
+                "unitCost":10.00,
+                "total":30.00
+                }
+        responses:
+          201:
+            body:
+              application/json:
+                example:
+                
+      /{lineNum}:
+        displayName: resourceName
+        
+            
